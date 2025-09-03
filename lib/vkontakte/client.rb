@@ -7,7 +7,7 @@ module Vkontakte
 
     # Implicit Flow for User Access Token
     #
-    # https://vk.com/dev/implicit_flow_user
+    # https://vk.ru/dev/implicit_flow_user
     def initialize(
       client_id = nil,
       api_version: Vkontakte::API_VERSION,
@@ -29,7 +29,7 @@ module Vkontakte
       @email = email
       @pass = pass
 
-      redirect_uri  = 'https://oauth.vk.com/blank.html'
+      redirect_uri  = 'https://oauth.#{Vkontakte::BASE_DOMAIN}/blank.html'
       display       = 'mobile'
       response_type = 'token'
 
@@ -45,7 +45,7 @@ module Vkontakte
       # Opening Authorization Dialog
       #
       query_string = query.map { |k, v| "#{k}=#{v}" }.join('&')
-      url = "https://oauth.vk.com/authorize?#{query_string}"
+      url = "https://oauth.#{Vkontakte::BASE_DOMAIN}/authorize?#{query_string}"
 
       page = agent.get(url)
 

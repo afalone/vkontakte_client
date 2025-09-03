@@ -9,15 +9,15 @@ email = ARGV[0]
 pass  = ARGV[1]
 
 client_id     = '5135875'
-redirect_uri  = 'https://oauth.vk.com/blank.html'
+redirect_uri  = "https://oauth.#{Vkontakte::BASE_DOMAIN}/blank.html"
 display       = 'mobile'
 scope         = 'friends,audio,video'
 response_type = 'token'
 v             = '5.101'
 
-# https://vk.com/dev/auth_mobile
+# https://vk.ru/dev/auth_mobile
 puts 'Открытие диалога авторизации'
-url = "https://oauth.vk.com/oauth/authorize?client_id=#{client_id}&display=#{display}&redirect_uri=#{redirect_uri}&scope=#{scope}&response_type=#{response_type}&v=#{v}"
+url = "https://oauth.#{Vkontakte::BASE_DOMAIN}/oauth/authorize?client_id=#{client_id}&display=#{display}&redirect_uri=#{redirect_uri}&scope=#{scope}&response_type=#{response_type}&v=#{v}"
 puts url
 
 # puts Mechanize::VERSION
@@ -48,7 +48,7 @@ if page.uri.path == '/authorize'
   page = gain_access_form.submit
 end
 
-# https://oauth.vk.com/blank.html#access_token=398ef517c9552129ec0f4df40ac483f9a29dd8f309f72323846deb40ee8799b38138cff939762c979c093&expires_in=86400&user_id=83380724
+# https://oauth.vk.ru/blank.html#access_token=398ef517c9552129ec0f4df40ac483f9a29dd8f309f72323846deb40ee8799b38138cff939762c979c093&expires_in=86400&user_id=83380724
 gragment_regexp = /\Aaccess_token=(?<access_token>.*)&expires_in=(?<expires_in>\d+)&user_id=(?<user_id>\d*)\z/
 auth_params = page.uri.fragment.match(gragment_regexp)
 

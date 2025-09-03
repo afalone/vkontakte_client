@@ -15,4 +15,5 @@ require 'vkontakte/ask_for_credentials'
 
 module Vkontakte
   API_VERSION = '5.131'
+  BASE_DOMAIN = 'vk.ru'
 end
