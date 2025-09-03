@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# https://vk.com/dev/messages_api
+# https://vk.ru/dev/messages_api
 #
 # From February 15, 2019 methods of the messages section
 # by default, will be available to call only with the community access key.
@@ -27,7 +27,7 @@ pass  = credentials.password
 vk = Vkontakte::Client.new(CLIENT_ID)
 vk.login!(email, pass, permissions: 'messages')
 
-# https://vk.com/dev/using_longpoll
+# https://vk.ru/dev/using_longpoll
 
 resp = vk.api.messages_getLongPollServer
 puts resp

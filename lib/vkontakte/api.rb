@@ -3,7 +3,7 @@
 module Vkontakte
   # Make Vkontakte API requests
   #
-  # https://vk.com/dev/api_requests
+  # https://vk.ru/dev/api_requests
   #
   class API
     attr_reader :access_token, :proxy, :api_version, :timeout
@@ -40,7 +40,7 @@ module Vkontakte
     def execute(method_name, params = {})
       params.merge!(access_token: @access_token, lang: @lang, v: @api_version, https: '1')
 
-      url = "https://api.vk.com/method/#{method_name}"
+      url = "https://api.#{Vkontakte::BASE_DOMAIN}/method/#{method_name}"
 
       response = make_request(url, params)
 

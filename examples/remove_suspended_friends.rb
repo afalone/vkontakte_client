@@ -18,7 +18,7 @@ if $PROGRAM_NAME == __FILE__
 
   vk.api.account_getInfo
 
-  # https://vk.com/dev/friends.get
+  # https://vk.ru/dev/friends.get
   friends = vk.api.friends_get(fields: 'online,last_seen')['items']
   friends.each do |f|
     deactivated = f['deactivated'] == 'banned'

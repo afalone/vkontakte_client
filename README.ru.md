@@ -12,7 +12,7 @@ require 'vkontakte_client'
 
 Вам необходимо зарегистрировать свое приложение, чтобы использовать все возможности API ВКонтакте.
 
-Откройте страницу «Управление» в левом меню, затем нажмите «Создать приложение» — Вы попадете на страницу <https://vk.com/editapp?act=create>
+Откройте страницу «Управление» в левом меню, затем нажмите «Создать приложение» — Вы попадете на страницу <https://vk.ru/editapp?act=create>
 
 Нужно выбрать Standalone-приложение.
 
@@ -33,13 +33,13 @@ vk = Vkontakte::Client.new(CLIENT_ID)
 
 Для работы с большинством методов API Вам необходимо передавать в запросе `access_token` — специальный ключ доступа.
 
-Эта библиотека поддерживаем [Implicit flow](https://vk.com/dev/implicit_flow_user) способ получения ключа доступа по OAuth 2.0:
+Эта библиотека поддерживаем [Implicit flow](https://vk.ru/dev/implicit_flow_user) способ получения ключа доступа по OAuth 2.0:
 
 Метод `login!` принимает следующие аргументы:
 
 * `email`: логин пользователя
 * `pass`: пароль
-* `permissions`: запрашиваемые [права доступа приложения](https://vk.com/dev/permissions)
+* `permissions`: запрашиваемые [права доступа приложения](https://vk.ru/dev/permissions)
 
 ``` ruby
 vk.login!(email, pass, permissions: 'friends')
@@ -47,7 +47,7 @@ vk.login!(email, pass, permissions: 'friends')
 
 ### Вызов методов
 
-После успешной авторизации Вы можете [осуществлять запросы к API](https://vk.com/dev/api_requests) используя название метода из [списка функций API](https://vk.com/dev/methods).
+После успешной авторизации Вы можете [осуществлять запросы к API](https://vk.ru/dev/api_requests) используя название метода из [списка функций API](https://vk.ru/dev/methods).
 
 Параметры соответствующего метода API передаются как `Hash`.
 Следует заметить что метод вида `friends.get` нужно передавать как `friends_get`.
@@ -77,3 +77,7 @@ user_id = vk.user_id
 api = Vkontakte::API.new(access_token)
 api.friends_get(fields: 'online', order: 'name', name_case: 'dat')
 ```
+
+### Предупреждение о смене домена
+
+В сентябре 2025 администрация Vkontakte переключила базовый домен с `vk.com`  на `vk.ru`. В форке гема 'afalone/vkontakte_client' версии `2.2.1` обновлены вызовы апи с учетом обновления домена.

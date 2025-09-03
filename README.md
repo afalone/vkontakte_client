@@ -24,7 +24,7 @@ require 'vkontakte_client'
 
 You must register your application in order to use all the capabilities of API VKontakte.
 
-Open the page “Managed apps” in the left menu, then press “Create an app”. You will be directed to the page <https://vk.com/editapp?act=create>.
+Open the page “Managed apps” in the left menu, then press “Create an app”. You will be directed to the page <https://vk.ru/editapp?act=create>.
 
 You need to choose _Standalone-app_.
 
@@ -43,14 +43,14 @@ vk = Vkontakte::Client.new(CLIENT_ID)
 
 In general, for API identification, a special access key is used which is called `access_token`. This token is a string of numbers and Latin letters which you send to the server along with the request.
 
-This library supports the [Implicit flow](https://vk.com/dev/implicit_flow_user) way to obtain an OAuth 2.0 access key:
+This library supports the [Implicit flow](https://vk.ru/dev/implicit_flow_user) way to obtain an OAuth 2.0 access key:
 th 2.0:
 
 The `login!` method takes the following arguments:
 
 * `email`: user login
 * `pass`: user password
-* `permissions`: request [application permissions](https://vk.com/dev/permissions)
+* `permissions`: request [application permissions](https://vk.ru/dev/permissions)
 
 ``` ruby
 vk.login!(email, pass, permissions: 'friends')
@@ -58,7 +58,7 @@ vk.login!(email, pass, permissions: 'friends')
 
 ### API Requests
 
-After successful authorization, you can [make requests to the API](https://vk.com/dev/api_requests) using the method name from the [API function list](https://vk.com/dev/methods).
+After successful authorization, you can [make requests to the API](https://vk.ru/dev/api_requests) using the method name from the [API function list](https://vk.ru/dev/methods).
 
 The parameters of the corresponding API method are passed as `Hash`.
 Note that a method like `friends.get` needs to be passed as `friends_get`.
@@ -86,6 +86,10 @@ user_id = vk.user_id
 api = Vkontakte::API.new(access_token)
 api.friends_get(fields: 'online', order: 'name', name_case: 'dat')
 ```
+
+### Vkontakte base domain switching
+
+In September 2025 Vkontakte administration switched base domain `vk.com` to `vk.ru` and all API calls MUST be routed to new domain. Version `2.2.1` forked to `afalone/vkontakte_client` solves that changes.
 
 ## Contributing
 
